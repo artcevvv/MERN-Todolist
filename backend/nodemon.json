@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "artcevvv",
+        "MONGO_PASSWORD": "lTqkYJ95mB58ZKVJ",
+        "PORT": 3000
+    }
+}
