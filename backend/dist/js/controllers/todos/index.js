@@ -12,15 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTodo = exports.addTodo = exports.updateTodo = exports.getTodos = void 0;
+exports.deleteTodo = exports.updateTodo = exports.addTodo = exports.getTodos = void 0;
 const Todo_1 = __importDefault(require("../../models/Todo"));
 const getTodos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const todos = yield Todo_1.default.find();
         res.status(200).json({ todos });
     }
-    catch (err) {
-        throw err;
+    catch (error) {
+        throw error;
     }
 });
 exports.getTodos = getTodos;
@@ -34,15 +34,10 @@ const addTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const newTodo = yield todo.save();
         const allTodos = yield Todo_1.default.find();
-        res
-            .status(201)
-            .json({ message: "Todo Added",
-            todo: newTodo,
-            todos: allTodos,
-        });
+        res.status(201).json({ message: 'Todo added', todo: newTodo, todos: allTodos });
     }
-    catch (err) {
-        throw err;
+    catch (error) {
+        throw error;
     }
 });
 exports.addTodo = addTodo;
@@ -52,13 +47,13 @@ const updateTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const updateTodo = yield Todo_1.default.findByIdAndUpdate({ _id: id }, body);
         const allTodos = yield Todo_1.default.find();
         res.status(200).json({
-            message: "Todo Updated",
+            message: 'Todo updated',
             todo: updateTodo,
             todos: allTodos,
         });
     }
-    catch (err) {
-        throw err;
+    catch (error) {
+        throw error;
     }
 });
 exports.updateTodo = updateTodo;
@@ -67,13 +62,13 @@ const deleteTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const deletedTodo = yield Todo_1.default.findByIdAndDelete(req.params.id);
         const allTodos = yield Todo_1.default.find();
         res.status(200).json({
-            message: "Todo Removed",
+            message: 'Todo deleted',
             todo: deletedTodo,
-            todos: allTodos
+            todos: allTodos,
         });
     }
-    catch (err) {
-        throw err;
+    catch (error) {
+        throw error;
     }
 });
 exports.deleteTodo = deleteTodo;
