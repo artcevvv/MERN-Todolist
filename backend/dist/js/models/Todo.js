@@ -4,15 +4,15 @@ const mongoose_1 = require("mongoose");
 const todoSchema = new mongoose_1.Schema({
     name: {
         type: String,
-        required: true
+        required: false
     },
     description: {
         type: String,
-        required: true
+        required: false
     },
     status: {
         type: Boolean,
-        required: true
+        required: false
     }
 }, { timestamps: true });
 exports.default = (0, mongoose_1.model)('Todo', todoSchema);

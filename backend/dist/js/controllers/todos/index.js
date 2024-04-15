@@ -27,17 +27,24 @@ exports.getTodos = getTodos;
 const addTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = req.body;
+        if (!body || !body.name || !body.description || !body.status) {
+            res.status(400).json('Invalid request body');
+            console.log(body.name);
+            return;
+        }
+        const { name, description, status } = body;
         const todo = new Todo_1.default({
-            name: body.name,
-            description: body.description,
-            status: body.status,
+            name,
+            description,
+            status
         });
         const newTodo = yield todo.save();
         const allTodos = yield Todo_1.default.find();
-        res.status(201).json({ message: 'Todo added', todo: newTodo, todos: allTodos });
+        res.status(201).json({ message: "Added", todo: newTodo, todos: allTodos });
     }
     catch (error) {
-        throw error;
+        console.error('Error adding todo:', error);
+        res.status(500).json({ error: 'Failed to add todo' });
     }
 });
 exports.addTodo = addTodo;

@@ -4,17 +4,17 @@ import { model, Schema } from 'mongoose'
 const todoSchema: Schema = new Schema({
     name: {
         type: String,
-        required: true
+        required: false
     },
 
     description: {
         type: String,
-        required: true
+        required: false
     },
 
     status: {
         type: Boolean,
-        required: true
+        required: false
     }
 
 }, { timestamps: true })

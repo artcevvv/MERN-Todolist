@@ -1,4 +1,4 @@
-import { Document } from 'mongoose'
+import { Document } from "mongodb"
 
 export interface ITodo extends Document {
     name: string
